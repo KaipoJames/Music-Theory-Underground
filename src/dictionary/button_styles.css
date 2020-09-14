@@ -1,0 +1,25 @@
+.buttons {
+  min-height: 20vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttons button {
+  color: white;
+  height: 3rem;
+  width: 12rem;
+  margin: auto;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+  background: rgb(72, 123, 170);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline-color: black;
+}
+.buttons button:hover {
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: rgb(56, 113, 167);
+}
