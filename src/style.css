@@ -39,6 +39,7 @@ header #title-header {
   font-size: 3rem;
   background: -webkit-linear-gradient(#a867be, #6c63ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 nav .nav-dummy{
@@ -65,6 +66,7 @@ nav .nav-links a {
   outline-color: black;
   background: -webkit-linear-gradient(#a867be, #6c63ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 nav .nav-links li {
@@ -113,6 +115,7 @@ footer h4 {
   font-size: calc(1.1rem + 1vw);
   background: -webkit-linear-gradient(#a867be, #6c63ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-left: 3rem;
 }
@@ -127,6 +130,8 @@ footer a {
   outline-color: black;
 }
 
+
+/* <---- Media Queries ----> */
 @media screen and (max-width: 1292px) {
   nav{
     justify-content: flex-end;

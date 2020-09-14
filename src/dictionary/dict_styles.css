@@ -33,6 +33,7 @@ main {
 .controls div label {
   background: -webkit-linear-gradient(#a867be, #6c63ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .start-notes-container {
@@ -81,6 +82,7 @@ main {
   align-self: flex-start;
   background: -webkit-linear-gradient(#a867be, #6c63ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
