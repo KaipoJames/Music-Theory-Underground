@@ -8,10 +8,11 @@ main {
   min-height: 25vh;
   margin: 1.8rem;
   margin-bottom: 0.8rem;
+  position: relative;
 }
 
 /* ----- CONTROLS STYLES ----- */
-.left-controls {
+.left-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -26,6 +27,7 @@ main {
   align-items: flex-start;
   font-size: 1.5rem;
   margin-left: -0.25rem;
+  margin-top: 0.4rem;
 }
 .controls div {
   margin-top: 0.5rem;
@@ -64,7 +66,6 @@ main {
 }
 
 .chord-notes {
-  margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: 1.7rem;
   min-height: 15vh;
@@ -85,6 +86,9 @@ main {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+#intervals {
+  margin-left: 0.1rem;
+}
 
 /* ----- KEYBOARD STYLES ----- */
 .sticky {
@@ -98,9 +102,11 @@ main {
   padding-top: 1rem;
 }
 .keyboard-container {
-  width: 108%;
+  width: 60%;
   height: 25vh;
   min-height: 10rem;
+  position: absolute;
+  right: 0;
   overflow-y: hidden;
   overflow-x: scroll;
   white-space: nowrap;
@@ -108,7 +114,7 @@ main {
 .keyboard {
   position: relative;
   border: 3px solid black;
-  min-width: 134.5%;
+  min-width: 151.8%;
   height: 102%;
 }
 .keyboard:before {

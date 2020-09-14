@@ -8,13 +8,8 @@ window.onscroll = () => {
 };
 
 var mainContainer = document.querySelector(".main-container");
-var keyBoard = document.querySelector(".keyboard");
-
 // Get the offset position of the main-container
 var sticky = mainContainer.offsetTop;
-
-console.log("i run twice");
-
 // When the scroll position is reached, add the sticky class. Otherwise, remove it.
 function addStickyClass() {
   if (window.pageYOffset >= sticky) {

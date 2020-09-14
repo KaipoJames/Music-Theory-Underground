@@ -134,11 +134,9 @@ window.onscroll = function () {
   addStickyClass();
 };
 
-var mainContainer = document.querySelector(".main-container");
-var keyBoard = document.querySelector(".keyboard"); // Get the offset position of the main-container
+var mainContainer = document.querySelector(".main-container"); // Get the offset position of the main-container
 
-var sticky = mainContainer.offsetTop;
-console.log("i run twice"); // When the scroll position is reached, add the sticky class. Otherwise, remove it.
+var sticky = mainContainer.offsetTop; // When the scroll position is reached, add the sticky class. Otherwise, remove it.
 
 function addStickyClass() {
   if (window.pageYOffset >= sticky) {
@@ -175,7 +173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58210" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58269" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

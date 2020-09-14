@@ -52,7 +52,7 @@ const buttons = document.querySelector(".buttons");
 const chords = ChordType.symbols();
 var keyBoard = document.querySelector(".keyboard");
 
-const SetUpApp = {
+const SetUpButtons = {
   init() {
     this.setupStartNotes();
     this.setUpOctaves();
@@ -146,7 +146,7 @@ const soundEngine = {
 };
 
 //Main App Object Conatining All Of Our Functions
-const app = {
+const SetUpKeyboard = {
   init() {
     this.addKeysToKeyboard();
   },
@@ -224,5 +224,5 @@ const app = {
   },
 };
 
-SetUpApp.init();
-app.init();
+SetUpButtons.init();
+SetUpKeyboard.init();

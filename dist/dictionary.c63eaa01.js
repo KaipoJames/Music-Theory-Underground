@@ -134,11 +134,9 @@ window.onscroll = function () {
   addStickyClass();
 };
 
-var mainContainer = document.querySelector(".main-container");
-var keyBoard = document.querySelector(".keyboard"); // Get the offset position of the main-container
+var mainContainer = document.querySelector(".main-container"); // Get the offset position of the main-container
 
-var sticky = mainContainer.offsetTop;
-console.log("i run twice"); // When the scroll position is reached, add the sticky class. Otherwise, remove it.
+var sticky = mainContainer.offsetTop; // When the scroll position is reached, add the sticky class. Otherwise, remove it.
 
 function addStickyClass() {
   if (window.pageYOffset >= sticky) {
@@ -6905,7 +6903,7 @@ var buttons = document.querySelector(".buttons");
 var chords = _tonal.ChordType.symbols();
 
 var keyBoard = document.querySelector(".keyboard");
-var SetUpApp = {
+var SetUpButtons = {
   init: function init() {
     this.setupStartNotes();
     this.setUpOctaves();
@@ -7019,7 +7017,7 @@ var soundEngine = {
   }
 }; //Main App Object Conatining All Of Our Functions
 
-var app = {
+var SetUpKeyboard = {
   init: function init() {
     this.addKeysToKeyboard();
   },
@@ -7091,8 +7089,8 @@ var app = {
     keyBoard.appendChild(whiteNote);
   }
 };
-SetUpApp.init();
-app.init();
+SetUpButtons.init();
+SetUpKeyboard.init();
 },{"./sticky.js":"dictionary/sticky.js","@tonaljs/tonal":"../node_modules/@tonaljs/tonal/dist/index.es.js","howler":"../node_modules/howler/dist/howler.js"}],"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -7121,7 +7119,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58210" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58269" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
