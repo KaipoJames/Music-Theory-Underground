@@ -1,12 +1,11 @@
 import { NoteIdentifiers } from "./sticky.js";
 
-import { Chord, note } from "@tonaljs/tonal";
+import { Chord } from "@tonaljs/tonal";
 import { ChordType } from "@tonaljs/tonal";
 import { Howl, Howler } from "howler";
-import { Scale, Note } from "@tonaljs/tonal";
+import { Note } from "@tonaljs/tonal";
 
-let noteCombs = [];
-let finalComb = [];
+let pianoKeys = [];
 
 let selectedStartNote;
 let selectedStartOctave;
@@ -100,6 +99,7 @@ const SetUpButtons = {
     }
     notesDisplay.innerHTML = chordNotes.join(" - ");
     this.getChordNotes(chordNotes);
+    console.log("ChordNotes = " + chordNotes);
 
     soundEngine.playChord(chordNotes);
   },
@@ -137,11 +137,36 @@ const soundEngine = {
   },
 
   playChord(noteSequence) {
+    SetUpKeyboard.clearKeyboard();
     for (const noteName of noteSequence) {
       let midiInt = Note.midi(noteName);
       const midiString = midiInt.toString();
       sound.play(midiString);
+
+      for (const note of pianoKeys) {
+        console.log("note: " + note);
+        console.log("noteName: " + noteName);
+        if (noteName == note.id) {
+          if (note.classList.contains("sharp")) {
+            note.classList.add("black-key-pressed");
+          } else {
+            note.classList.add("black-key-pressed");
+          }
+        }
+      }
     }
+  },
+
+  playNote(note) {
+    let midiKey = Note.midi(note.id);
+    const midiString = midiKey.toString();
+    sound.play(midiString);
+  },
+
+  stopSound(note) {
+    let stopID = Note.midi(note.id);
+    const midiString = stopID.toString();
+    sound.stop(midiString);
   },
 };
 
@@ -174,6 +199,32 @@ const SetUpKeyboard = {
       var blackNote_Bb = this.createElement("div", "black-note");
       var whiteNote_B = this.createElement("div", "white-note");
 
+      //Add the data-note identifier to each note, and an id
+      whiteNote_C.setAttribute("data-note", "C" + j);
+      whiteNote_C.setAttribute("id", "C" + j);
+      blackNote_Db.setAttribute("data-note", "C#" + j);
+      blackNote_Db.setAttribute("id", "Db" + j);
+      whiteNote_D.setAttribute("data-note", "D" + j);
+      whiteNote_D.setAttribute("id", "D" + j);
+      blackNote_Eb.setAttribute("data-note", "D#" + j);
+      blackNote_Eb.setAttribute("id", "Eb" + j);
+      whiteNote_E.setAttribute("data-note", "E" + j);
+      whiteNote_E.setAttribute("id", "E" + j);
+      whiteNote_F.setAttribute("data-note", "F" + j);
+      whiteNote_F.setAttribute("id", "F" + j);
+      blackNote_Gb.setAttribute("data-note", "F#" + j);
+      blackNote_Gb.setAttribute("id", "Gb" + j);
+      whiteNote_G.setAttribute("data-note", "G" + j);
+      whiteNote_G.setAttribute("id", "G" + j);
+      blackNote_Ab.setAttribute("data-note", "G#" + j);
+      blackNote_Ab.setAttribute("id", "Ab" + j);
+      whiteNote_A.setAttribute("data-note", "A" + j);
+      whiteNote_A.setAttribute("id", "A" + j);
+      blackNote_Bb.setAttribute("data-note", "A#" + j);
+      blackNote_Bb.setAttribute("id", "Bb" + j);
+      whiteNote_B.setAttribute("data-note", "B" + j);
+      whiteNote_B.setAttribute("id", "B" + j);
+
       //Add the sharp class to all black keys
       blackNote_Db.classList.add("sharp");
       blackNote_Eb.classList.add("sharp");
@@ -181,26 +232,7 @@ const SetUpKeyboard = {
       blackNote_Ab.classList.add("sharp");
       blackNote_Bb.classList.add("sharp");
 
-      //Add the data-note identifier to each note, and id for every black key
-      whiteNote_C.setAttribute("data-note", "C" + j);
-      blackNote_Db.setAttribute("data-note", "C#" + j);
-      blackNote_Db.setAttribute("id", "Db" + j);
-      whiteNote_D.setAttribute("data-note", "D" + j);
-      blackNote_Db.setAttribute("data-note", "D#" + j);
-      blackNote_Db.setAttribute("id", "Eb" + j);
-      whiteNote_E.setAttribute("data-note", "E" + j);
-      whiteNote_F.setAttribute("data-note", "F" + j);
-      blackNote_Gb.setAttribute("data-note", "F#" + j);
-      blackNote_Gb.setAttribute("id", "Gb" + j);
-      whiteNote_G.setAttribute("data-note", "G" + j);
-      blackNote_Ab.setAttribute("data-note", "G#" + j);
-      blackNote_Ab.setAttribute("id", "Ab" + j);
-      whiteNote_A.setAttribute("data-note", "A" + j);
-      blackNote_Bb.setAttribute("data-note", "A#" + j);
-      blackNote_Bb.setAttribute("id", "Bb" + j);
-      whiteNote_B.setAttribute("data-note", "B" + j);
-
-      //Add all Keys to Keyboard DOM Object
+      //Add all Keys to Keyboard DOM Object - Make them appear on keyboard
       keyBoard.appendChild(whiteNote_C);
       keyBoard.appendChild(blackNote_Db);
       keyBoard.appendChild(whiteNote_D);
@@ -213,14 +245,66 @@ const SetUpKeyboard = {
       keyBoard.appendChild(whiteNote_A);
       keyBoard.appendChild(blackNote_Bb);
       keyBoard.appendChild(whiteNote_B);
+
+      // Add elements to helper array(to add event listeners later)
+      pianoKeys.push(whiteNote_C);
+      pianoKeys.push(blackNote_Db);
+      pianoKeys.push(whiteNote_D);
+      pianoKeys.push(blackNote_Eb);
+      pianoKeys.push(whiteNote_E);
+      pianoKeys.push(whiteNote_F);
+      pianoKeys.push(blackNote_Gb);
+      pianoKeys.push(whiteNote_G);
+      pianoKeys.push(blackNote_Ab);
+      pianoKeys.push(whiteNote_A);
+      pianoKeys.push(blackNote_Bb);
+      pianoKeys.push(whiteNote_B);
     }
+    // C7 all alone :)
+    var whiteNote_C7 = this.createElement("div", "white-note");
+    whiteNote_C7.setAttribute("data-note", "C7");
+    whiteNote_C7.setAttribute("id", "C7");
+    keyBoard.appendChild(whiteNote_C7);
   },
 
   addKeysToKeyboard() {
     this.createOctaves(6);
-    var whiteNote = this.createElement("div", "white-note");
-    whiteNote.setAttribute("data-note", "C7");
-    keyBoard.appendChild(whiteNote);
+    this.addClickListeners();
+  },
+  clearKeyboard() {
+    for (const key of pianoKeys) {
+      if (key.classList.contains("black-key-pressed")) {
+        key.classList.remove("black-key-pressed");
+      } else if (key.classList.contains("white-key-pressed")) {
+        key.classList.remove("white-key-pressed");
+      }
+    }
+  },
+
+  // Use a CLOSURE in these two methods to save the index of current iteration.
+  // Otherwise, it would overwrite every iteration and return only the last iteration.
+  addClickListeners() {
+    for (var i = 0; i < pianoKeys.length; i++) {
+      pianoKeys[i].addEventListener("click", this.keyInteractions(i));
+    }
+  },
+  keyInteractions(i) {
+    return function () {
+      // Check if key is black or white, then add appropriate class
+      if (pianoKeys[i].classList.contains("sharp") == true) {
+        pianoKeys[i].classList.add("black-key-pressed");
+        soundEngine.playNote(pianoKeys[i]);
+        setTimeout(function () {
+          pianoKeys[i].classList.remove("black-key-pressed");
+        }, 900);
+      } else {
+        pianoKeys[i].classList.add("white-key-pressed");
+        soundEngine.playNote(pianoKeys[i]);
+        setTimeout(function () {
+          pianoKeys[i].classList.remove("white-key-pressed");
+        }, 900);
+      }
+    };
   },
 };
 

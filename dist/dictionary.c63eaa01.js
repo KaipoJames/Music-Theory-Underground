@@ -6877,8 +6877,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-var noteCombs = [];
-var finalComb = [];
+var pianoKeys = [];
 var selectedStartNote;
 var selectedStartOctave;
 var j = 0;
@@ -6963,6 +6962,7 @@ var SetUpButtons = {
 
     notesDisplay.innerHTML = chordNotes.join(" - ");
     this.getChordNotes(chordNotes);
+    console.log("ChordNotes = " + chordNotes);
     soundEngine.playChord(chordNotes);
   },
   getChordNotes: function getChordNotes(note_s) {
@@ -6997,6 +6997,8 @@ var soundEngine = {
     }
   },
   playChord: function playChord(noteSequence) {
+    SetUpKeyboard.clearKeyboard();
+
     var _iterator = _createForOfIteratorHelper(noteSequence),
         _step;
 
@@ -7008,12 +7010,47 @@ var soundEngine = {
 
         var midiString = midiInt.toString();
         sound.play(midiString);
+
+        var _iterator2 = _createForOfIteratorHelper(pianoKeys),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var note = _step2.value;
+            console.log("note: " + note);
+            console.log("noteName: " + noteName);
+
+            if (noteName == note.id) {
+              if (note.classList.contains("sharp")) {
+                note.classList.add("black-key-pressed");
+              } else {
+                note.classList.add("black-key-pressed");
+              }
+            }
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
       }
     } catch (err) {
       _iterator.e(err);
     } finally {
       _iterator.f();
     }
+  },
+  playNote: function playNote(note) {
+    var midiKey = _tonal.Note.midi(note.id);
+
+    var midiString = midiKey.toString();
+    sound.play(midiString);
+  },
+  stopSound: function stopSound(note) {
+    var stopID = _tonal.Note.midi(note.id);
+
+    var midiString = stopID.toString();
+    sound.stop(midiString);
   }
 }; //Main App Object Conatining All Of Our Functions
 
@@ -7042,31 +7079,38 @@ var SetUpKeyboard = {
       var blackNote_Ab = this.createElement("div", "black-note");
       var whiteNote_A = this.createElement("div", "white-note");
       var blackNote_Bb = this.createElement("div", "black-note");
-      var whiteNote_B = this.createElement("div", "white-note"); //Add the sharp class to all black keys
+      var whiteNote_B = this.createElement("div", "white-note"); //Add the data-note identifier to each note, and an id
+
+      whiteNote_C.setAttribute("data-note", "C" + j);
+      whiteNote_C.setAttribute("id", "C" + j);
+      blackNote_Db.setAttribute("data-note", "C#" + j);
+      blackNote_Db.setAttribute("id", "Db" + j);
+      whiteNote_D.setAttribute("data-note", "D" + j);
+      whiteNote_D.setAttribute("id", "D" + j);
+      blackNote_Eb.setAttribute("data-note", "D#" + j);
+      blackNote_Eb.setAttribute("id", "Eb" + j);
+      whiteNote_E.setAttribute("data-note", "E" + j);
+      whiteNote_E.setAttribute("id", "E" + j);
+      whiteNote_F.setAttribute("data-note", "F" + j);
+      whiteNote_F.setAttribute("id", "F" + j);
+      blackNote_Gb.setAttribute("data-note", "F#" + j);
+      blackNote_Gb.setAttribute("id", "Gb" + j);
+      whiteNote_G.setAttribute("data-note", "G" + j);
+      whiteNote_G.setAttribute("id", "G" + j);
+      blackNote_Ab.setAttribute("data-note", "G#" + j);
+      blackNote_Ab.setAttribute("id", "Ab" + j);
+      whiteNote_A.setAttribute("data-note", "A" + j);
+      whiteNote_A.setAttribute("id", "A" + j);
+      blackNote_Bb.setAttribute("data-note", "A#" + j);
+      blackNote_Bb.setAttribute("id", "Bb" + j);
+      whiteNote_B.setAttribute("data-note", "B" + j);
+      whiteNote_B.setAttribute("id", "B" + j); //Add the sharp class to all black keys
 
       blackNote_Db.classList.add("sharp");
       blackNote_Eb.classList.add("sharp");
       blackNote_Gb.classList.add("sharp");
       blackNote_Ab.classList.add("sharp");
-      blackNote_Bb.classList.add("sharp"); //Add the data-note identifier to each note, and id for every black key
-
-      whiteNote_C.setAttribute("data-note", "C" + j);
-      blackNote_Db.setAttribute("data-note", "C#" + j);
-      blackNote_Db.setAttribute("id", "Db" + j);
-      whiteNote_D.setAttribute("data-note", "D" + j);
-      blackNote_Db.setAttribute("data-note", "D#" + j);
-      blackNote_Db.setAttribute("id", "Eb" + j);
-      whiteNote_E.setAttribute("data-note", "E" + j);
-      whiteNote_F.setAttribute("data-note", "F" + j);
-      blackNote_Gb.setAttribute("data-note", "F#" + j);
-      blackNote_Gb.setAttribute("id", "Gb" + j);
-      whiteNote_G.setAttribute("data-note", "G" + j);
-      blackNote_Ab.setAttribute("data-note", "G#" + j);
-      blackNote_Ab.setAttribute("id", "Ab" + j);
-      whiteNote_A.setAttribute("data-note", "A" + j);
-      blackNote_Bb.setAttribute("data-note", "A#" + j);
-      blackNote_Bb.setAttribute("id", "Bb" + j);
-      whiteNote_B.setAttribute("data-note", "B" + j); //Add all Keys to Keyboard DOM Object
+      blackNote_Bb.classList.add("sharp"); //Add all Keys to Keyboard DOM Object - Make them appear on keyboard
 
       keyBoard.appendChild(whiteNote_C);
       keyBoard.appendChild(blackNote_Db);
@@ -7079,14 +7123,76 @@ var SetUpKeyboard = {
       keyBoard.appendChild(blackNote_Ab);
       keyBoard.appendChild(whiteNote_A);
       keyBoard.appendChild(blackNote_Bb);
-      keyBoard.appendChild(whiteNote_B);
-    }
+      keyBoard.appendChild(whiteNote_B); // Add elements to helper array(to add event listeners later)
+
+      pianoKeys.push(whiteNote_C);
+      pianoKeys.push(blackNote_Db);
+      pianoKeys.push(whiteNote_D);
+      pianoKeys.push(blackNote_Eb);
+      pianoKeys.push(whiteNote_E);
+      pianoKeys.push(whiteNote_F);
+      pianoKeys.push(blackNote_Gb);
+      pianoKeys.push(whiteNote_G);
+      pianoKeys.push(blackNote_Ab);
+      pianoKeys.push(whiteNote_A);
+      pianoKeys.push(blackNote_Bb);
+      pianoKeys.push(whiteNote_B);
+    } // C7 all alone :)
+
+
+    var whiteNote_C7 = this.createElement("div", "white-note");
+    whiteNote_C7.setAttribute("data-note", "C7");
+    whiteNote_C7.setAttribute("id", "C7");
+    keyBoard.appendChild(whiteNote_C7);
   },
   addKeysToKeyboard: function addKeysToKeyboard() {
     this.createOctaves(6);
-    var whiteNote = this.createElement("div", "white-note");
-    whiteNote.setAttribute("data-note", "C7");
-    keyBoard.appendChild(whiteNote);
+    this.addClickListeners();
+  },
+  clearKeyboard: function clearKeyboard() {
+    var _iterator3 = _createForOfIteratorHelper(pianoKeys),
+        _step3;
+
+    try {
+      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+        var key = _step3.value;
+
+        if (key.classList.contains("black-key-pressed")) {
+          key.classList.remove("black-key-pressed");
+        } else if (key.classList.contains("white-key-pressed")) {
+          key.classList.remove("white-key-pressed");
+        }
+      }
+    } catch (err) {
+      _iterator3.e(err);
+    } finally {
+      _iterator3.f();
+    }
+  },
+  // Use a CLOSURE in these two methods to save the index of current iteration.
+  // Otherwise, it would overwrite every iteration and return only the last iteration.
+  addClickListeners: function addClickListeners() {
+    for (var i = 0; i < pianoKeys.length; i++) {
+      pianoKeys[i].addEventListener("click", this.keyInteractions(i));
+    }
+  },
+  keyInteractions: function keyInteractions(i) {
+    return function () {
+      // Check if key is black or white, then add appropriate class
+      if (pianoKeys[i].classList.contains("sharp") == true) {
+        pianoKeys[i].classList.add("black-key-pressed");
+        soundEngine.playNote(pianoKeys[i]);
+        setTimeout(function () {
+          pianoKeys[i].classList.remove("black-key-pressed");
+        }, 900);
+      } else {
+        pianoKeys[i].classList.add("white-key-pressed");
+        soundEngine.playNote(pianoKeys[i]);
+        setTimeout(function () {
+          pianoKeys[i].classList.remove("white-key-pressed");
+        }, 900);
+      }
+    };
   }
 };
 SetUpButtons.init();
@@ -7119,7 +7225,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58269" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49847" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
