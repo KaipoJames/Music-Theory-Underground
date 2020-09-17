@@ -157,10 +157,11 @@ main {
   background: rgb(190, 190, 190);
 }
 .black-key-pressed {
-  background: rgb(36, 36, 36);
+  background: rgb(71, 71, 71);
 }
 .white-key-normal {
   background: white;
+  border: 1px solid white;
 }
 .black-key-normal {
   background: black;

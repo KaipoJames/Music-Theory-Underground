@@ -7017,15 +7017,23 @@ var soundEngine = {
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
             var note = _step2.value;
-            console.log("note: " + note);
-            console.log("noteName: " + noteName);
 
             if (noteName == note.id) {
               if (note.classList.contains("sharp")) {
                 note.classList.add("black-key-pressed");
               } else {
+                note.classList.add("white-key-pressed");
+              }
+            }
+
+            if (note.getAttribute("data-note") == noteName) {
+              if (note.classList.contains("shasrp")) {
                 note.classList.add("black-key-pressed");
               }
+            }
+
+            if (noteName == note.classList[2]) {
+              note.classList.add("white-key-pressed");
             }
           }
         } catch (err) {
@@ -7083,26 +7091,28 @@ var SetUpKeyboard = {
 
       whiteNote_C.setAttribute("data-note", "C" + j);
       whiteNote_C.setAttribute("id", "C" + j);
-      blackNote_Db.setAttribute("data-note", "C#" + j);
-      blackNote_Db.setAttribute("id", "Db" + j);
+      whiteNote_C.classList.add("B#" + j);
+      blackNote_Db.setAttribute("data-note", "Db" + j);
+      blackNote_Db.setAttribute("id", "C#" + j);
       whiteNote_D.setAttribute("data-note", "D" + j);
       whiteNote_D.setAttribute("id", "D" + j);
-      blackNote_Eb.setAttribute("data-note", "D#" + j);
-      blackNote_Eb.setAttribute("id", "Eb" + j);
+      blackNote_Eb.setAttribute("data-note", "Eb" + j);
+      blackNote_Eb.setAttribute("id", "D#" + j);
       whiteNote_E.setAttribute("data-note", "E" + j);
       whiteNote_E.setAttribute("id", "E" + j);
       whiteNote_F.setAttribute("data-note", "F" + j);
       whiteNote_F.setAttribute("id", "F" + j);
-      blackNote_Gb.setAttribute("data-note", "F#" + j);
-      blackNote_Gb.setAttribute("id", "Gb" + j);
+      whiteNote_F.classList.add("E#" + j);
+      blackNote_Gb.setAttribute("data-note", "Gb" + j);
+      blackNote_Gb.setAttribute("id", "F#" + j);
       whiteNote_G.setAttribute("data-note", "G" + j);
       whiteNote_G.setAttribute("id", "G" + j);
-      blackNote_Ab.setAttribute("data-note", "G#" + j);
-      blackNote_Ab.setAttribute("id", "Ab" + j);
+      blackNote_Ab.setAttribute("data-note", "Ab" + j);
+      blackNote_Ab.setAttribute("id", "G#" + j);
       whiteNote_A.setAttribute("data-note", "A" + j);
       whiteNote_A.setAttribute("id", "A" + j);
-      blackNote_Bb.setAttribute("data-note", "A#" + j);
-      blackNote_Bb.setAttribute("id", "Bb" + j);
+      blackNote_Bb.setAttribute("data-note", "Bb" + j);
+      blackNote_Bb.setAttribute("id", "A#" + j);
       whiteNote_B.setAttribute("data-note", "B" + j);
       whiteNote_B.setAttribute("id", "B" + j); //Add the sharp class to all black keys
 
@@ -7225,7 +7235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49847" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54829" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
