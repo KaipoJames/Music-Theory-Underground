@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@tonaljs/tonal": "^4.1.0",
-    "howler": "^2.2.0"
+    "howler": "^2.2.0",
+    "parcel-bundler": "^1.12.4"
   }
 }

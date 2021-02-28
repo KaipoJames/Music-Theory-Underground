@@ -1,7 +1,7 @@
 TO RUN THIS APPLICATION:
 -use parcel from the command-line
 -navigate to project folder
--run: parcel ./src/index.html
+-run: parcel ./index.html
 
 Tools and Libraries used in this project:
 -howler.js
