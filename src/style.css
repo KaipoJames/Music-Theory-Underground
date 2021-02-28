@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body {
-  background: rgb(45, 46, 46);
+  background: var(--body-bg-color);
   color: white;
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
@@ -23,7 +23,7 @@ nav {
   padding: 0.5rem 0;
 
   /* background: rgb(236, 245, 113); */
-  background: rgb(45, 46, 46);
+  background: var(--body-bg-color);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -43,7 +43,6 @@ header #title-header {
   -webkit-text-fill-color: transparent;
 }
 nav .nav-dummy {
-  background: var(--body-bg-color);
   width: 10vw;
   min-height: 10vw;
   flex: 1 1 32rem;
