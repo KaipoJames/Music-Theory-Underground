@@ -11,7 +11,7 @@ body {
   overflow-x: hidden;
 }
 :root {
-  --body-bg-color: background: rgb(45, 46, 46);
+  --body-bg-color: rgb(45, 46, 46);
   --secondary-bg-color: gold;
 }
 
@@ -42,7 +42,7 @@ header #title-header {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-nav .nav-dummy{
+nav .nav-dummy {
   background: var(--body-bg-color);
   width: 10vw;
   min-height: 10vw;
@@ -130,13 +130,12 @@ footer a {
   outline-color: black;
 }
 
-
 /* <---- Media Queries ----> */
 @media screen and (max-width: 1292px) {
-  nav{
+  nav {
     justify-content: flex-end;
   }
-  .nav-links{
+  .nav-links {
     flex: none;
     position: relative;
     right: -30rem;
