@@ -1,0 +1,85 @@
+/* <---- Home Page Styles ----> */
+main {
+  min-height: 100vh;
+}
+
+.img-container {
+  position: relative;
+  top: -4rem;
+  left: 30rem;
+  z-index: -1;
+}
+.img-container svg {
+  height: 90%;
+  width: 55%;
+}
+svg {
+  position: relative;
+  float: left;
+}
+#right-circle-large {
+  position: relative;
+  animation: right_circle_large 2.5s ease infinite;
+}
+#right-circle-small {
+  position: relative;
+  animation: right_circle_small 2.5s ease infinite 2s;
+}
+#top-left-circle {
+  position: relative;
+  animation: top_left_circle 2.5s ease infinite 1s;
+}
+#top-right-circle {
+  position: relative;
+  animation: top_right_circle 3s ease infinite;
+}
+#left-circle {
+  position: relative;
+  animation: left_circle 2.5s ease infinite;
+}
+
+/* Animations! */
+@keyframes left_circle {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(1rem, -2.4rem);
+  }
+}
+@keyframes top_left_circle {
+  0% {
+    transform: translateY(0rem);
+  }
+  50% {
+    transform: translateY(-3rem);
+    transform: translateX(2rem);
+  }
+}
+@keyframes top_right_circle {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(-3.1rem, -20px);
+  }
+}
+@keyframes right_circle_large {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  40% {
+    transform: translate(-2rem, 2.2rem);
+  }
+}
+@keyframes right_circle_small {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(1rem, 3rem);
+  }
+}
+
+
+/*# sourceMappingURL=/home_styles.5d3fa263.css.map */

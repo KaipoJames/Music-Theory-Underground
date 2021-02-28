@@ -7207,7 +7207,7 @@ var SetUpKeyboard = {
 };
 SetUpButtons.init();
 SetUpKeyboard.init();
-},{"./sticky.js":"dictionary/sticky.js","@tonaljs/tonal":"../node_modules/@tonaljs/tonal/dist/index.es.js","howler":"../node_modules/howler/dist/howler.js"}],"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./sticky.js":"dictionary/sticky.js","@tonaljs/tonal":"../node_modules/@tonaljs/tonal/dist/index.es.js","howler":"../node_modules/howler/dist/howler.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -7235,7 +7235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54829" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50159" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -7411,5 +7411,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","dictionary/dictionary.js"], null)
+},{}]},{},["../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","dictionary/dictionary.js"], null)
 //# sourceMappingURL=/dictionary.c63eaa01.js.map
